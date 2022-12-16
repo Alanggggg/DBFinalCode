@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.finalproject.DAO.DogadoptionMapper">
+  <resultMap id="BaseResultMap" type="com.example.finalproject.pojo.Dogadoption">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="organization_id" jdbcType="VARCHAR" property="organizationId" />
+    <result column="primary_breed" jdbcType="VARCHAR" property="primaryBreed" />
+    <result column="secondary_breed" jdbcType="VARCHAR" property="secondaryBreed" />
+    <result column="primary_color" jdbcType="VARCHAR" property="primaryColor" />
+    <result column="secondary_color" jdbcType="VARCHAR" property="secondaryColor" />
+    <result column="age" jdbcType="VARCHAR" property="age" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="size" jdbcType="VARCHAR" property="size" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="published_at_time" jdbcType="VARCHAR" property="publishedAtTime" />
+    <result column="status_changed_time" jdbcType="VARCHAR" property="statusChangedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, organization_id, primary_breed, secondary_breed, primary_color, secondary_color, 
+    age, gender, size, name, status, published_at_time, status_changed_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dogadoption
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByBreed" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dogadoption
+    where primary_breed = #{breed,jdbcType=VARCHAR}
+  </select>
+  <select id="selectBySize" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dogadoption
+    where size = #{size,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllBreeds" resultType="java.lang.String">
+    select
+    distinct primary_breed
+    from dogadoption
+  </select>
+  <select id="selectAllAges" resultType="java.lang.String">
+    select
+      distinct age
+    from dogadoption
+  </select>
+  <select id="selectAllGenders" resultType="java.lang.String">
+    select
+      distinct gender
+    from dogadoption
+  </select>
+  <select id="selectAllSizes" resultType="java.lang.String">
+    select
+      distinct size
+    from dogadoption
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from dogadoption
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.finalproject.pojo.Dogadoption">
+    insert into dogadoption (id, organization_id, primary_breed, 
+      secondary_breed, primary_color, secondary_color, 
+      age, gender, size, 
+      name, status, published_at_time, 
+      status_changed_time)
+    values (#{id,jdbcType=VARCHAR}, #{organizationId,jdbcType=VARCHAR}, #{primaryBreed,jdbcType=VARCHAR}, 
+      #{secondaryBreed,jdbcType=VARCHAR}, #{primaryColor,jdbcType=VARCHAR}, #{secondaryColor,jdbcType=VARCHAR}, 
+      #{age,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{publishedAtTime,jdbcType=VARCHAR}, 
+      #{statusChangedTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.finalproject.pojo.Dogadoption">
+    insert into dogadoption
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="organizationId != null">
+        organization_id,
+      </if>
+      <if test="primaryBreed != null">
+        primary_breed,
+      </if>
+      <if test="secondaryBreed != null">
+        secondary_breed,
+      </if>
+      <if test="primaryColor != null">
+        primary_color,
+      </if>
+      <if test="secondaryColor != null">
+        secondary_color,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="size != null">
+        size,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="publishedAtTime != null">
+        published_at_time,
+      </if>
+      <if test="statusChangedTime != null">
+        status_changed_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null">
+        #{organizationId,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryBreed != null">
+        #{primaryBreed,jdbcType=VARCHAR},
+      </if>
+      <if test="secondaryBreed != null">
+        #{secondaryBreed,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryColor != null">
+        #{primaryColor,jdbcType=VARCHAR},
+      </if>
+      <if test="secondaryColor != null">
+        #{secondaryColor,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="publishedAtTime != null">
+        #{publishedAtTime,jdbcType=VARCHAR},
+      </if>
+      <if test="statusChangedTime != null">
+        #{statusChangedTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.finalproject.pojo.Dogadoption">
+    update dogadoption
+    <set>
+      <if test="organizationId != null">
+        organization_id = #{organizationId,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryBreed != null">
+        primary_breed = #{primaryBreed,jdbcType=VARCHAR},
+      </if>
+      <if test="secondaryBreed != null">
+        secondary_breed = #{secondaryBreed,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryColor != null">
+        primary_color = #{primaryColor,jdbcType=VARCHAR},
+      </if>
+      <if test="secondaryColor != null">
+        secondary_color = #{secondaryColor,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        size = #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="publishedAtTime != null">
+        published_at_time = #{publishedAtTime,jdbcType=VARCHAR},
+      </if>
+      <if test="statusChangedTime != null">
+        status_changed_time = #{statusChangedTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.finalproject.pojo.Dogadoption">
+    update dogadoption
+    set organization_id = #{organizationId,jdbcType=VARCHAR},
+      primary_breed = #{primaryBreed,jdbcType=VARCHAR},
+      secondary_breed = #{secondaryBreed,jdbcType=VARCHAR},
+      primary_color = #{primaryColor,jdbcType=VARCHAR},
+      secondary_color = #{secondaryColor,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      size = #{size,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      published_at_time = #{publishedAtTime,jdbcType=VARCHAR},
+      status_changed_time = #{statusChangedTime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
