@@ -7,6 +7,7 @@
     <classPathEntry location="/Users/yilangwan/mysqlConnector/mysql-connector-java-8.0.28.jar" />
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
         <commentGenerator>
             <property name="suppressAllComments" value="true" />
         </commentGenerator>
@@ -33,14 +34,11 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-<!--        <table tableName="Rawscores" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false">-->
-
+<!--        <table tableName="dogadoption" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false">-->
 <!--        </table>-->
-<!--        <table tableName="Passwords" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false">-->
+<!--        <table tableName="joined" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false">&ndash;&gt;-->
 <!--        </table>-->
-        <table tableName="dogadoption" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false">
-
-        </table>
+        <table tableName="joinedtables" domainObjectName="joinedtables" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
 
     </context>
 </generatorConfiguration>

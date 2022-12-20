@@ -21,7 +21,7 @@
     age, gender, size, name, status, published_at_time, status_changed_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from dogadoption
     where id = #{id,jdbcType=VARCHAR}
@@ -32,6 +32,16 @@
     from dogadoption
     where primary_breed = #{breed,jdbcType=VARCHAR}
   </select>
+  <select id="selectByCols" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dogadoption
+    <where>
+      <foreach collection="col" index="index" item="item" separator=" and ">
+        ${index}='${item}'
+      </foreach>
+    </where>
+  </select>
   <select id="selectBySize" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -40,19 +50,10 @@
   </select>
   <select id="selectAllBreeds" resultType="java.lang.String">
     select
-    distinct primary_breed
+      distinct primary_breed
     from dogadoption
   </select>
-  <select id="selectAllAges" resultType="java.lang.String">
-    select
-      distinct age
-    from dogadoption
-  </select>
-  <select id="selectAllGenders" resultType="java.lang.String">
-    select
-      distinct gender
-    from dogadoption
-  </select>
+
   <select id="selectAllSizes" resultType="java.lang.String">
     select
       distinct size
@@ -63,15 +64,15 @@
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.example.finalproject.pojo.Dogadoption">
-    insert into dogadoption (id, organization_id, primary_breed, 
-      secondary_breed, primary_color, secondary_color, 
-      age, gender, size, 
-      name, status, published_at_time, 
+    insert into dogadoption (id, organization_id, primary_breed,
+      secondary_breed, primary_color, secondary_color,
+      age, gender, size,
+      name, status, published_at_time,
       status_changed_time)
-    values (#{id,jdbcType=VARCHAR}, #{organizationId,jdbcType=VARCHAR}, #{primaryBreed,jdbcType=VARCHAR}, 
-      #{secondaryBreed,jdbcType=VARCHAR}, #{primaryColor,jdbcType=VARCHAR}, #{secondaryColor,jdbcType=VARCHAR}, 
-      #{age,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{publishedAtTime,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{organizationId,jdbcType=VARCHAR}, #{primaryBreed,jdbcType=VARCHAR},
+      #{secondaryBreed,jdbcType=VARCHAR}, #{primaryColor,jdbcType=VARCHAR}, #{secondaryColor,jdbcType=VARCHAR},
+      #{age,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{publishedAtTime,jdbcType=VARCHAR},
       #{statusChangedTime,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.finalproject.pojo.Dogadoption">

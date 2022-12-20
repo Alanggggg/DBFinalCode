@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.finalproject.DAO.JoinedTablesMapper">
+  <resultMap id="BaseResultMap" type="com.example.finalproject.pojo.JoinedTables">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="organization_id" jdbcType="VARCHAR" property="organizationId" />
+    <result column="primary_breed" jdbcType="VARCHAR" property="primaryBreed" />
+    <result column="secondary_breed" jdbcType="VARCHAR" property="secondaryBreed" />
+    <result column="primary_color" jdbcType="VARCHAR" property="primaryColor" />
+    <result column="secondary_color" jdbcType="VARCHAR" property="secondaryColor" />
+    <result column="age" jdbcType="VARCHAR" property="age" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="size" jdbcType="VARCHAR" property="size" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="published_at_time" jdbcType="VARCHAR" property="publishedAtTime" />
+    <result column="status_changed_time" jdbcType="VARCHAR" property="statusChangedTime" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="shelterName" jdbcType="VARCHAR" property="sheltername" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="zip" jdbcType="VARCHAR" property="zip" />
+    <result column="breed" jdbcType="VARCHAR" property="breed" />
+    <result column="popularity" jdbcType="INTEGER" property="popularity" />
+    <result column="min_height" jdbcType="REAL" property="minHeight" />
+    <result column="max_height" jdbcType="REAL" property="maxHeight" />
+    <result column="min_weight" jdbcType="REAL" property="minWeight" />
+    <result column="max_weight" jdbcType="REAL" property="maxWeight" />
+    <result column="group" jdbcType="VARCHAR" property="group" />
+    <result column="grooming_frequency_value" jdbcType="REAL" property="groomingFrequencyValue" />
+    <result column="shedding_value" jdbcType="REAL" property="sheddingValue" />
+    <result column="energy_level_value" jdbcType="REAL" property="energyLevelValue" />
+    <result column="trainability_value" jdbcType="REAL" property="trainabilityValue" />
+    <result column="demeanor_value" jdbcType="REAL" property="demeanorValue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,organization_id,primary_breed,secondary_breed,primary_color,
+secondary_color,age,gender,size,name,status,published_at_time,status_changed_time,
+address,email,city,shelterName,phone,state,zip,breed,popularity,min_height,max_height,min_weight,
+max_weight,group,grooming_frequency_value,shedding_value,energy_level_value,trainability_value,demeanor_value
+  </sql>
+  <insert id="insert" parameterType="com.example.finalproject.pojo.JoinedTables">
+    insert into joinedtables (id, organization_id, primary_breed,
+      secondary_breed, primary_color, secondary_color,
+      age, gender, size,
+      name, status, published_at_time,
+      status_changed_time, address, email,
+      city, shelterName, phone,
+      state, zip, breed,
+      popularity, min_height, max_height,
+      min_weight, max_weight, group,
+      grooming_frequency_value, shedding_value, energy_level_value,
+      trainability_value, demeanor_value)
+    values (#{id,jdbcType=VARCHAR}, #{organizationId,jdbcType=VARCHAR}, #{primaryBreed,jdbcType=VARCHAR},
+      #{secondaryBreed,jdbcType=VARCHAR}, #{primaryColor,jdbcType=VARCHAR}, #{secondaryColor,jdbcType=VARCHAR},
+      #{age,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{publishedAtTime,jdbcType=VARCHAR},
+      #{statusChangedTime,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+      #{city,jdbcType=VARCHAR}, #{sheltername,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+      #{state,jdbcType=VARCHAR}, #{zip,jdbcType=VARCHAR}, #{breed,jdbcType=VARCHAR},
+      #{popularity,jdbcType=INTEGER}, #{minHeight,jdbcType=REAL}, #{maxHeight,jdbcType=REAL},
+      #{minWeight,jdbcType=REAL}, #{maxWeight,jdbcType=REAL}, #{group,jdbcType=VARCHAR},
+      #{groomingFrequencyValue,jdbcType=REAL}, #{sheddingValue,jdbcType=REAL}, #{energyLevelValue,jdbcType=REAL},
+      #{trainabilityValue,jdbcType=REAL}, #{demeanorValue,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.finalproject.pojo.JoinedTables">
+    insert into joinedtables
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="organizationId != null">
+        organization_id,
+      </if>
+      <if test="primaryBreed != null">
+        primary_breed,
+      </if>
+      <if test="secondaryBreed != null">
+        secondary_breed,
+      </if>
+      <if test="primaryColor != null">
+        primary_color,
+      </if>
+      <if test="secondaryColor != null">
+        secondary_color,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="size != null">
+        size,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="publishedAtTime != null">
+        published_at_time,
+      </if>
+      <if test="statusChangedTime != null">
+        status_changed_time,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="sheltername != null">
+        shelterName,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="zip != null">
+        zip,
+      </if>
+      <if test="breed != null">
+        breed,
+      </if>
+      <if test="popularity != null">
+        popularity,
+      </if>
+      <if test="minHeight != null">
+        min_height,
+      </if>
+      <if test="maxHeight != null">
+        max_height,
+      </if>
+      <if test="minWeight != null">
+        min_weight,
+      </if>
+      <if test="maxWeight != null">
+        max_weight,
+      </if>
+      <if test="group != null">
+        group,
+      </if>
+      <if test="groomingFrequencyValue != null">
+        grooming_frequency_value,
+      </if>
+      <if test="sheddingValue != null">
+        shedding_value,
+      </if>
+      <if test="energyLevelValue != null">
+        energy_level_value,
+      </if>
+      <if test="trainabilityValue != null">
+        trainability_value,
+      </if>
+      <if test="demeanorValue != null">
+        demeanor_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null">
+        #{organizationId,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryBreed != null">
+        #{primaryBreed,jdbcType=VARCHAR},
+      </if>
+      <if test="secondaryBreed != null">
+        #{secondaryBreed,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryColor != null">
+        #{primaryColor,jdbcType=VARCHAR},
+      </if>
+      <if test="secondaryColor != null">
+        #{secondaryColor,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="publishedAtTime != null">
+        #{publishedAtTime,jdbcType=VARCHAR},
+      </if>
+      <if test="statusChangedTime != null">
+        #{statusChangedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="sheltername != null">
+        #{sheltername,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="zip != null">
+        #{zip,jdbcType=VARCHAR},
+      </if>
+      <if test="breed != null">
+        #{breed,jdbcType=VARCHAR},
+      </if>
+      <if test="popularity != null">
+        #{popularity,jdbcType=INTEGER},
+      </if>
+      <if test="minHeight != null">
+        #{minHeight,jdbcType=REAL},
+      </if>
+      <if test="maxHeight != null">
+        #{maxHeight,jdbcType=REAL},
+      </if>
+      <if test="minWeight != null">
+        #{minWeight,jdbcType=REAL},
+      </if>
+      <if test="maxWeight != null">
+        #{maxWeight,jdbcType=REAL},
+      </if>
+      <if test="group != null">
+        #{group,jdbcType=VARCHAR},
+      </if>
+      <if test="groomingFrequencyValue != null">
+        #{groomingFrequencyValue,jdbcType=REAL},
+      </if>
+      <if test="sheddingValue != null">
+        #{sheddingValue,jdbcType=REAL},
+      </if>
+      <if test="energyLevelValue != null">
+        #{energyLevelValue,jdbcType=REAL},
+      </if>
+      <if test="trainabilityValue != null">
+        #{trainabilityValue,jdbcType=REAL},
+      </if>
+      <if test="demeanorValue != null">
+        #{demeanorValue,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectByCols" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    select
+    *
+    from joinedtables
+    <where>
+      <foreach collection="col" index="index" item="item" separator=" and ">
+        ${index}='${item}'
+      </foreach>
+    </where>
+  </select>
+  <select id="selectAllAges" resultType="java.lang.String">
+    select
+      distinct age
+    from dogadoption
+  </select>
+  <select id="selectAllGenders" resultType="java.lang.String">
+    select
+      distinct gender
+    from dogadoption
+  </select>
+  <select id="selectAllBreeds" resultType="java.lang.String">
+    select
+      distinct primary_breed
+    from dogadoption
+  </select>
+  <select id="selectAllSizes" resultType="java.lang.String">
+    select
+      distinct size
+    from dogadoption
+  </select>
+  <select id="selectBySize" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dogadoption
+    where size = #{size,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByBreed" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dogadoption
+    where primary_breed = #{breed,jdbcType=VARCHAR}
+  </select>
+</mapper>
