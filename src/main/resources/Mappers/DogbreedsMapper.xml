@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.finalproject.DAO.DogbreedsMapper">
+  <resultMap id="Breed" type="com.example.finalproject.pojo.Dogbreeds">
+    <id column="breed" jdbcType="VARCHAR" property="breed" />
+    <result column="popularity" jdbcType="INTEGER" property="popularity" />
+    <result column="min_height" jdbcType="REAL" property="minHeight" />
+    <result column="max_height" jdbcType="REAL" property="maxHeight" />
+    <result column="min_weight" jdbcType="REAL" property="minWeight" />
+    <result column="max_weight" jdbcType="REAL" property="maxWeight" />
+    <result column="group" jdbcType="VARCHAR" property="group" />
+    <result column="grooming_frequency_value" jdbcType="REAL" property="groomingFrequencyValue" />
+    <result column="shedding_value" jdbcType="REAL" property="sheddingValue" />
+    <result column="energy_level_value" jdbcType="REAL" property="energyLevelValue" />
+    <result column="trainability_value" jdbcType="REAL" property="trainabilityValue" />
+    <result column="demeanor_value" jdbcType="REAL" property="demeanorValue" />
+  </resultMap>
+  <sql id="Breed_Column_List">
+    breed, popularity, min_height, max_height, min_weight, max_weight, `group`, grooming_frequency_value, shedding_value, 
+    energy_level_value, trainability_value, demeanor_value
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="Breed">
+    select 
+    <include refid="Breed_Column_List" />
+    from dogbreeds
+    where breed = #{breed,jdbcType=VARCHAR}
+  </select>
+  <select id="higherthanaverage" resultMap="Breed">
+    select
+    <include refid="Breed_Column_List" />
+    from dogbreeds
+    where dogbreeds.`group` = #{group} and dogbreeds.energy_level_value &gt; #{energy_value}
+  </select>
+  <select id="mostpopular" resultType="java.util.HashMap">
+    select da.name name, db.popularity max_pop
+    from dogadoption da, dogbreeds db, (
+      select max(db1.popularity) max_pop
+      from dogbreeds db1, dogadoption da1
+      where da1.primary_breed = db1.breed and da1.gender = 'Female'
+    ) m
+    where da.primary_breed = db.breed and da.gender = 'Female' and db.popularity = m.max_pop
+  </select>
+    <select id="dailygroom" resultType="java.util.HashMap">
+    select db.breed breed, m.max_pop max_pop
+    from dogbreeds db,(
+      select max(popularity) max_pop
+      from dogbreeds
+      where grooming_frequency_value = 1
+    ) m
+    where db.popularity = m.max_pop
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from dogbreeds
+    where breed = #{breed,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.finalproject.pojo.Dogbreeds">
+    insert into dogbreeds (breed, popularity, min_height, 
+      max_height, min_weight, max_weight, 
+      `group`, grooming_frequency_value, shedding_value, 
+      energy_level_value, trainability_value, demeanor_value
+      )
+    values (#{breed,jdbcType=VARCHAR}, #{popularity,jdbcType=INTEGER}, #{minHeight,jdbcType=REAL}, 
+      #{maxHeight,jdbcType=REAL}, #{minWeight,jdbcType=REAL}, #{maxWeight,jdbcType=REAL}, 
+      #{group,jdbcType=VARCHAR}, #{groomingFrequencyValue,jdbcType=REAL}, #{sheddingValue,jdbcType=REAL}, 
+      #{energyLevelValue,jdbcType=REAL}, #{trainabilityValue,jdbcType=REAL}, #{demeanorValue,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.finalproject.pojo.Dogbreeds">
+    insert into dogbreeds
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="breed != null">
+        breed,
+      </if>
+      <if test="popularity != null">
+        popularity,
+      </if>
+      <if test="minHeight != null">
+        min_height,
+      </if>
+      <if test="maxHeight != null">
+        max_height,
+      </if>
+      <if test="minWeight != null">
+        min_weight,
+      </if>
+      <if test="maxWeight != null">
+        max_weight,
+      </if>
+      <if test="group != null">
+        group,
+      </if>
+      <if test="groomingFrequencyValue != null">
+        grooming_frequency_value,
+      </if>
+      <if test="sheddingValue != null">
+        shedding_value,
+      </if>
+      <if test="energyLevelValue != null">
+        energy_level_value,
+      </if>
+      <if test="trainabilityValue != null">
+        trainability_value,
+      </if>
+      <if test="demeanorValue != null">
+        demeanor_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="breed != null">
+        #{breed,jdbcType=VARCHAR},
+      </if>
+      <if test="popularity != null">
+        #{popularity,jdbcType=INTEGER},
+      </if>
+      <if test="minHeight != null">
+        #{minHeight,jdbcType=REAL},
+      </if>
+      <if test="maxHeight != null">
+        #{maxHeight,jdbcType=REAL},
+      </if>
+      <if test="minWeight != null">
+        #{minWeight,jdbcType=REAL},
+      </if>
+      <if test="maxWeight != null">
+        #{maxWeight,jdbcType=REAL},
+      </if>
+      <if test="group != null">
+        #{group,jdbcType=VARCHAR},
+      </if>
+      <if test="groomingFrequencyValue != null">
+        #{groomingFrequencyValue,jdbcType=REAL},
+      </if>
+      <if test="sheddingValue != null">
+        #{sheddingValue,jdbcType=REAL},
+      </if>
+      <if test="energyLevelValue != null">
+        #{energyLevelValue,jdbcType=REAL},
+      </if>
+      <if test="trainabilityValue != null">
+        #{trainabilityValue,jdbcType=REAL},
+      </if>
+      <if test="demeanorValue != null">
+        #{demeanorValue,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.finalproject.pojo.Dogbreeds">
+    update dogbreeds
+    <set>
+      <if test="popularity != null">
+        popularity = #{popularity,jdbcType=INTEGER},
+      </if>
+      <if test="minHeight != null">
+        min_height = #{minHeight,jdbcType=REAL},
+      </if>
+      <if test="maxHeight != null">
+        max_height = #{maxHeight,jdbcType=REAL},
+      </if>
+      <if test="minWeight != null">
+        min_weight = #{minWeight,jdbcType=REAL},
+      </if>
+      <if test="maxWeight != null">
+        max_weight = #{maxWeight,jdbcType=REAL},
+      </if>
+      <if test="group != null">
+        group = #{group,jdbcType=VARCHAR},
+      </if>
+      <if test="groomingFrequencyValue != null">
+        grooming_frequency_value = #{groomingFrequencyValue,jdbcType=REAL},
+      </if>
+      <if test="sheddingValue != null">
+        shedding_value = #{sheddingValue,jdbcType=REAL},
+      </if>
+      <if test="energyLevelValue != null">
+        energy_level_value = #{energyLevelValue,jdbcType=REAL},
+      </if>
+      <if test="trainabilityValue != null">
+        trainability_value = #{trainabilityValue,jdbcType=REAL},
+      </if>
+      <if test="demeanorValue != null">
+        demeanor_value = #{demeanorValue,jdbcType=REAL},
+      </if>
+    </set>
+    where breed = #{breed,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.finalproject.pojo.Dogbreeds">
+    update dogbreeds
+    set popularity = #{popularity,jdbcType=INTEGER},
+      min_height = #{minHeight,jdbcType=REAL},
+      max_height = #{maxHeight,jdbcType=REAL},
+      min_weight = #{minWeight,jdbcType=REAL},
+      max_weight = #{maxWeight,jdbcType=REAL},
+      group = #{group,jdbcType=VARCHAR},
+      grooming_frequency_value = #{groomingFrequencyValue,jdbcType=REAL},
+      shedding_value = #{sheddingValue,jdbcType=REAL},
+      energy_level_value = #{energyLevelValue,jdbcType=REAL},
+      trainability_value = #{trainabilityValue,jdbcType=REAL},
+      demeanor_value = #{demeanorValue,jdbcType=REAL}
+    where breed = #{breed,jdbcType=VARCHAR}
+  </update>
+</mapper>

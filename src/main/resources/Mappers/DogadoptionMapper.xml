@@ -59,6 +59,52 @@
       distinct size
     from dogadoption
   </select>
+  <select id="calAdopRate" parameterType="java.lang.String" resultType="java.lang.Float">
+    select A.adopt_num/count(dogadoption.id)
+    from(
+      select count(id) adopt_num
+      from dogadoption
+      where status = 'adopted' and age = #{age,jdbcType=VARCHAR}
+    ) as A, dogadoption
+    where dogadoption.age = #{age,jdbcType=VARCHAR}
+  </select>
+  <select id="averageAdoptionSpeed" resultType="java.util.HashMap">
+      select ds.state, avg(TIMESTAMPDIFF(HOUR,da.published_at_time, da.status_changed_time)) adopt_time
+      from dogadoption da, dogshelter ds
+      where da.status = 'adopted' and da.organization_id = ds.id
+      group by ds.state
+      order by adopt_time desc
+  </select>
+  <select id="adoptionRate" resultType="java.util.HashMap">
+      select se.state state, t.adopted_num / count(da.id) adoptrate, se.median_income economy
+      from dogadoption da, stateeconomy se, dogshelter ds,(
+        select ds1.state state, count(da1.id) adopted_num
+        from dogadoption da1, dogshelter ds1
+        where da1.organization_id = ds1.id and da1.status = 'adopted'
+        group by ds1.state
+      ) as t
+      where da.organization_id = ds.id and ds.state = se.state and ds.state = t.state
+      group by se.state
+  </select>
+  <select id="adoptabledogs" resultType="java.util.HashMap">
+      select ds.state state, count(da.id) adoptablenum
+      from dogadoption da, dogshelter ds
+      where da.organization_id = ds.id and da.status = 'adoptable'
+      group by ds.state
+      order by adoptablenum desc
+  </select>
+  <select id="sizeadoptrate" resultType="java.util.HashMap">
+      select da1.size size, t.adopted_num/count(da1.id) adoptedrate
+      from dogadoption da1, (
+        select da.size size, count(da.id) adopted_num
+        from dogadoption da
+        where da.status = 'adopted'
+        group by da.size
+      ) t
+      where da1.size = t.size
+      group by da1.size
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from dogadoption
     where id = #{id,jdbcType=VARCHAR}

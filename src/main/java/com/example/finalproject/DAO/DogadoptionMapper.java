@@ -2,9 +2,7 @@ package com.example.finalproject.DAO;
 
 import com.example.finalproject.pojo.Dogadoption;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public interface DogadoptionMapper {
     int deleteByPrimaryKey(String id);
@@ -25,4 +23,9 @@ public interface DogadoptionMapper {
     List<Dogadoption> selectBySize(String size);
     List<Dogadoption> selectByCols(@Param("col") Map<String, String> col);
 
+    Float calAdopRate(String age);
+    List<HashMap<String,Object>> averageAdoptionSpeed();
+    List<HashMap<String,Object>> adoptionRate();
+    List<HashMap<String,Object>> adoptabledogs();
+    List<HashMap<String,Object>> sizeadoptrate();
 }
