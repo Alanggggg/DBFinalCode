@@ -7,6 +7,7 @@
     <classPathEntry location="C:\Program Files (x86)\MySQL\ConnectorJ\mysql-connector-j-8.0.31.jar" />
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
         <commentGenerator>
             <property name="suppressAllComments" value="true" />
         </commentGenerator>
@@ -33,15 +34,19 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-<!--        <table tableName="Rawscores" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false">-->
-
+<!--        <table tableName="dogadoption" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false">-->
 <!--        </table>-->
-<!--        <table tableName="Passwords" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false">-->
+<!--        <table tableName="joined" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false">&ndash;&gt;-->
 <!--        </table>-->
+<<<<<<< HEAD
         <table tableName="dogadoption" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"> </table>
         <table tableName="doggroups" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"> </table>
         <table tableName="dogbreeds" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"> </table>
         <table tableName="stateeconomy" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"> </table>
         <table tableName="dogshelter" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"> </table>
+=======
+        <table tableName="joinedtables" domainObjectName="joinedtables" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
+
+>>>>>>> ca96cb3194ea3babfafa4d5cf9533d5767d61b3c
     </context>
 </generatorConfiguration>
