@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.finalproject.DAO.DoggroupsMapper">
+  <resultMap id="BaseResultMap" type="com.example.finalproject.pojo.Doggroups">
+    <id column="group" jdbcType="VARCHAR" property="group" />
+    <result column="average_popularity" jdbcType="REAL" property="averagePopularity" />
+    <result column="average_grooming_frequency" jdbcType="REAL" property="averageGroomingFrequency" />
+    <result column="average_shedding_value" jdbcType="REAL" property="averageSheddingValue" />
+    <result column="average_energy_level" jdbcType="REAL" property="averageEnergyLevel" />
+    <result column="average_trainability_value" jdbcType="REAL" property="averageTrainabilityValue" />
+    <result column="average_demeanor_value" jdbcType="REAL" property="averageDemeanorValue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `group`, average_popularity, average_grooming_frequency, average_shedding_value, average_energy_level, average_trainability_value, average_demeanor_value
+  </sql>
+  <select id="averageEnergy" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from doggroups
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from doggroups
+    where `group` = #{group,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.finalproject.pojo.Doggroups">
+    insert into doggroups (group, average_popularity, average_grooming_frequency, 
+      average_shedding_value, average_energy_level, average_trainability_value, 
+      average_demeanor_value)
+    values (#{group,jdbcType=VARCHAR}, #{averagePopularity,jdbcType=REAL}, #{averageGroomingFrequency,jdbcType=REAL}, 
+      #{averageSheddingValue,jdbcType=REAL}, #{averageEnergyLevel,jdbcType=REAL}, #{averageTrainabilityValue,jdbcType=REAL}, 
+      #{averageDemeanorValue,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.finalproject.pojo.Doggroups">
+    insert into doggroups
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="group != null">
+        group,
+      </if>
+      <if test="averagePopularity != null">
+        average_popularity,
+      </if>
+      <if test="averageGroomingFrequency != null">
+        average_grooming_frequency,
+      </if>
+      <if test="averageSheddingValue != null">
+        average_shedding_value,
+      </if>
+      <if test="averageEnergyLevel != null">
+        average_energy_level,
+      </if>
+      <if test="averageTrainabilityValue != null">
+        average_trainability_value,
+      </if>
+      <if test="averageDemeanorValue != null">
+        average_demeanor_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="group != null">
+        #{group,jdbcType=VARCHAR},
+      </if>
+      <if test="averagePopularity != null">
+        #{averagePopularity,jdbcType=REAL},
+      </if>
+      <if test="averageGroomingFrequency != null">
+        #{averageGroomingFrequency,jdbcType=REAL},
+      </if>
+      <if test="averageSheddingValue != null">
+        #{averageSheddingValue,jdbcType=REAL},
+      </if>
+      <if test="averageEnergyLevel != null">
+        #{averageEnergyLevel,jdbcType=REAL},
+      </if>
+      <if test="averageTrainabilityValue != null">
+        #{averageTrainabilityValue,jdbcType=REAL},
+      </if>
+      <if test="averageDemeanorValue != null">
+        #{averageDemeanorValue,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.finalproject.pojo.Doggroups">
+    update doggroups
+    <set>
+      <if test="averagePopularity != null">
+        average_popularity = #{averagePopularity,jdbcType=REAL},
+      </if>
+      <if test="averageGroomingFrequency != null">
+        average_grooming_frequency = #{averageGroomingFrequency,jdbcType=REAL},
+      </if>
+      <if test="averageSheddingValue != null">
+        average_shedding_value = #{averageSheddingValue,jdbcType=REAL},
+      </if>
+      <if test="averageEnergyLevel != null">
+        average_energy_level = #{averageEnergyLevel,jdbcType=REAL},
+      </if>
+      <if test="averageTrainabilityValue != null">
+        average_trainability_value = #{averageTrainabilityValue,jdbcType=REAL},
+      </if>
+      <if test="averageDemeanorValue != null">
+        average_demeanor_value = #{averageDemeanorValue,jdbcType=REAL},
+      </if>
+    </set>
+    where group = #{group,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.finalproject.pojo.Doggroups">
+    update doggroups
+    set average_popularity = #{averagePopularity,jdbcType=REAL},
+      average_grooming_frequency = #{averageGroomingFrequency,jdbcType=REAL},
+      average_shedding_value = #{averageSheddingValue,jdbcType=REAL},
+      average_energy_level = #{averageEnergyLevel,jdbcType=REAL},
+      average_trainability_value = #{averageTrainabilityValue,jdbcType=REAL},
+      average_demeanor_value = #{averageDemeanorValue,jdbcType=REAL}
+    where group = #{group,jdbcType=VARCHAR}
+  </update>
+</mapper>

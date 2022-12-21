@@ -1,8 +1,5 @@
 package com.example.finalproject.pojo;
 
-import lombok.Data;
-
-@Data
 public class Dogadoption {
     private String id;
 

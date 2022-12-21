@@ -1,9 +1,7 @@
 package com.example.finalproject.DAO;
 
 import com.example.finalproject.pojo.Dogadoption;
-
-import java.util.List;
-
+import java.util.*;
 public interface DogadoptionMapper {
     int deleteByPrimaryKey(String id);
 
@@ -25,4 +23,9 @@ public interface DogadoptionMapper {
     List<String> selectAllAges();
     List<String> selectAllGenders();
     List<String> selectAllSizes();
+    Float calAdopRate(String age);
+    List<HashMap<String,Object>> averageAdoptionSpeed();
+    List<HashMap<String,Object>> adoptionRate();
+    List<HashMap<String,Object>> adoptabledogs();
+    List<HashMap<String,Object>> sizeadoptrate();
 }

@@ -6,7 +6,7 @@ import com.example.finalproject.service.IDogAdoption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 public class DogAdoptionImpl implements IDogAdoption {
@@ -35,5 +35,101 @@ public class DogAdoptionImpl implements IDogAdoption {
     public List<Dogadoption> selectBySize(String size) {
         return dogadoptionMapper.selectBySize(size);
     }
-
+    @Override
+    public Float calAdopRate(String age){
+        return dogadoptionMapper.calAdopRate(age);
+    }
+    @Override
+    public List<HashMap<String,Object>> fastadopt(){
+        List<HashMap<String,Object>> list = dogadoptionMapper.averageAdoptionSpeed();
+        // SortedMap<String, Float> map = new TreeMap<String, Float>();
+        // // System.out.println(list);
+        // if (list != null && !list.isEmpty()) {
+        //     for (HashMap<String, Object> hashMap : list) {
+        //         String key = null;
+        //         Float value = null;
+        //         for (Map.Entry<String, Object> entry : hashMap.entrySet()) {
+        //             if ("state".equals(entry.getKey())) {
+        //                     key = (String) entry.getValue();
+        //             } else if ("adopt_time".equals(entry.getKey())) {
+        //                     //我需要的是int型所以做了如下转换，实际上返回的object应为Long。
+        //                     value = Float.parseFloat(entry.getValue().toString());
+                            
+        //             }     
+        //         }
+        //         map.put(key,value);
+        //     }
+        // }
+        // System.out.println(map);
+        return list;
+    }
+    @Override
+    public List<HashMap<String,Object>> economyadopt(){ //'CA':[0.5,2000]
+        //HashMap<String,List<Float>> map = new HashMap<String,List<Float>>();
+        List<HashMap<String,Object>> list = dogadoptionMapper.adoptionRate();
+        // if (list != null && !list.isEmpty()) {
+        //     for (HashMap<String, Object> hashMap : list) {
+        //         String key = null;
+        //         Integer economy = null;
+        //         Float rate = null;
+        //         for (Map.Entry<String, Object> entry : hashMap.entrySet()) {
+        //             if ("state".equals(entry.getKey())) {
+        //                     key = (String) entry.getValue();
+        //             } else if ("adopt_time".equals(entry.getKey())) {
+        //                     //我需要的是int型所以做了如下转换，实际上返回的object应为Long。
+        //                     rate = Float.parseFloat(entry.getValue().toString());
+        //             } else if ("adopt_time".equals(entry.getKey())) {
+        //                 //我需要的是int型所以做了如下转换，实际上返回的object应为Long。
+        //                 economy = ((Long)entry.getValue()).intValue();
+        //             }
+        //         }
+        //         // map.put(key,value);
+        //     }
+        // }
+        return list;
+    }
+    @Override
+    public List<HashMap<String,Object>> adoptablestate(){
+        List<HashMap<String,Object>> list = dogadoptionMapper.adoptabledogs();
+        // SortedMap<String, Integer> map = new TreeMap<String, Integer>();
+        // if (list != null && !list.isEmpty()) {
+        //     for (HashMap<String, Object> hashMap : list) {
+        //         String key = null;
+        //         Integer value = null;
+        //         for (Map.Entry<String, Object> entry : hashMap.entrySet()) {
+        //             if ("state".equals(entry.getKey())) {
+        //                     key = (String) entry.getValue();
+        //             } else if ("adoptablenum".equals(entry.getKey())) {
+        //                     //我需要的是int型所以做了如下转换，实际上返回的object应为Long。
+        //                     value = ((Long)entry.getValue()).intValue();
+        //             }     
+        //         }
+        //         map.put(key, value);
+        //     }
+        // }
+        // System.out.println(map);
+        return list;
+    }
+    @Override
+    public List<HashMap<String,Object>> sizeadopted(){
+        List<HashMap<String,Object>> list = dogadoptionMapper.sizeadoptrate();
+        // SortedMap<String, Float> map = new TreeMap<String, Float>();
+        // if (list != null && !list.isEmpty()) {
+        //     for (HashMap<String, Object> hashMap : list) {
+        //         String key = null;
+        //         Float value = null;
+        //         for (Map.Entry<String, Object> entry : hashMap.entrySet()) {
+        //             if ("size".equals(entry.getKey())) {
+        //                     key = (String) entry.getValue();
+        //             } else if ("adoptedrate".equals(entry.getKey())) {
+        //                     //我需要的是int型所以做了如下转换，实际上返回的object应为Long。
+        //                     value = Float.parseFloat(entry.getValue().toString());
+        //             }     
+        //         }
+        //         map.put(key, value);
+        //     }
+        // }
+        // System.out.println(map);
+        return list;
+    }
 }
