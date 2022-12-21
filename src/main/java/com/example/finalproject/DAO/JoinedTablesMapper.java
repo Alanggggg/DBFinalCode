@@ -19,5 +19,6 @@ public interface JoinedTablesMapper {
     List<Dogadoption> selectBySize(String size);
     List<String> selectAllAges();
     List<String> selectAllGenders();
+    List<String> selectAllCities();
 
 }

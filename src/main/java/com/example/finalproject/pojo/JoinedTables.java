@@ -44,6 +44,10 @@ public class JoinedTables {
 
     private String zip;
 
+    private Float latitude;
+
+    private Float longitude;
+
     private String breed;
 
     private Integer popularity;
@@ -226,6 +230,22 @@ public class JoinedTables {
 
     public void setZip(String zip) {
         this.zip = zip == null ? null : zip.trim();
+    }
+
+    public Float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Float latitude) {
+        this.latitude = latitude;
+    }
+
+    public Float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Float longitude) {
+        this.longitude = longitude;
     }
 
     public String getBreed() {

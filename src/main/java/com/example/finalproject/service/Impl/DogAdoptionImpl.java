@@ -43,6 +43,11 @@ public class DogAdoptionImpl implements IDogAdoption {
     }
 
     @Override
+    public List<String> selectAllCities() {
+        return joinedTablesMapper.selectAllCities();
+    }
+
+    @Override
     public List<Dogadoption> selectByBreed(String breed) {
         return joinedTablesMapper.selectByBreed(breed);
     }

@@ -14,6 +14,7 @@ public interface IDogAdoption {
     List<String> selectAllSizes();
     List<String> selectAllAges();
     List<String> selectAllGenders();
+    List<String> selectAllCities();
 
     List<Dogadoption> selectByBreed(String breed);
 

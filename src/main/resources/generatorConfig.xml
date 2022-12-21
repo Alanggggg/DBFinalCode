@@ -38,7 +38,7 @@
 <!--        </table>-->
 <!--        <table tableName="joined" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false">&ndash;&gt;-->
 <!--        </table>-->
-        <table tableName="joinedtables" domainObjectName="joinedtables" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
+        <table tableName="joinedtables" domainObjectName="JoinedTables" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
 
     </context>
 </generatorConfiguration>
